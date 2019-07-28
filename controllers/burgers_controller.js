@@ -17,8 +17,10 @@ router.get("/", function(req, res) {
   });
   
   router.post("/api/burgers", function(req, res) {
-    burger.insertOne(["burger_name", "devoured"], [req.body.name, req.body.devoured], function(result) {
+    devouredParsed = JSON.parse(req.body.devoured);
+    burger.insertOne(["burger_name", "devoured"], [req.body.name, devouredParsed], function(result) {
       // Send back the ID of the new quote
+      console.log("New burger was successfully created");
       res.json({ id: result.insertId });
     });
   });
@@ -30,7 +32,7 @@ router.get("/", function(req, res) {
   
     burger.updateOne(
       {
-        devoured: req.body.devoured
+        devoured: JSON.parse(req.body.devoured)
       },
       condition,
       function(result) {
@@ -38,6 +40,7 @@ router.get("/", function(req, res) {
           // If no rows were changed, then the ID must not exist, so 404
           return res.status(404).end();
         }
+        console.log("Update request  was made succesfully")
         res.status(200).end();
   
       }

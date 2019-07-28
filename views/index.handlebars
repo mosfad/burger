@@ -45,13 +45,13 @@
   $("#create-burger").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-
+    console.log("I am inside the create burger event");
     // [name=plan] will find an element with a "name" attribute equal to the string "plan"
     var newBurger = {
       name: $("#create-burger [name=burger]").val().trim(),
-      devoured: false;
+      devoured: false
     };
-
+    console.log(newBurger);
     // Send the POST request.
     $.ajax("/api/burgers", {
       type: "POST",
@@ -68,13 +68,14 @@
   $(".eat-burger").on("click", function(event) {
     // Get the ID from the button.
     var id = $(this);
-
+    console.log("I am inside the update burger event");
+    
     var updatedBurger = {
-      devoured: true;
+      devoured: true
     };
-
+    console.log(updatedBurger);
     // Send the PUT request.
-    $.ajax("/api/burgers" + id, {
+    $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: updatedBurger
     }).then(
