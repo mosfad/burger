@@ -30,7 +30,6 @@ router.get("/", function(req, res) {
   
     burger.updateOne(
       {
-        burger_name: req.body.name,
         devoured: req.body.devoured
       },
       condition,
