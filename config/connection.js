@@ -13,7 +13,7 @@ if (process.env.JAWSDB_URL) {
     database: "todoagain_db"
   });
 }
-
+/*
 var connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: 3306,
