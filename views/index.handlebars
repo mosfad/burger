@@ -8,7 +8,7 @@
                     <li id="not-eaten{{this.id}}">
                         <p class="not-eaten">
                         {{this.id}}.  {{this.burger_name}}
-                        <button id="{{this.id}}" data-burgerid="{{this.devour}}" class="eat-burger">Devour it!</button>
+                        <button id="{{this.id}}" data-burgerid="{{this.devoured}}" class="eat-burger">Devour it!</button>
                         </p>
                     </li>
                 {{/unless}}
@@ -67,7 +67,8 @@
 
   $(".eat-burger").on("click", function(event) {
     // Get the ID from the button.
-    var id = $(this);
+    var idElem = $(this);
+    var id = idElem.attr("id");
     console.log("I am inside the update burger event");
     
     var updatedBurger = {
@@ -79,11 +80,11 @@
       type: "PUT",
       data: updatedBurger
     }).then(
-      function() {
-        console.log("updated id ", id);
+      function() {//NOTHING IS HAPPENING HERE..........................
+        console.log("updated id, " + id);
         // The burger has been devoured so move it!
-        var removeItem = $("#not-eaten" + id);
-        removeItem.remove();
+        //var removeItem = $("#not-eaten" + id);
+        //removeItem.remove();
         // Reload the page to get the updated list
         location.reload();
       }

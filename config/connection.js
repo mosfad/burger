@@ -5,6 +5,7 @@ var connection;
 if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
+
   connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -13,7 +14,7 @@ if (process.env.JAWSDB_URL) {
   });
 }
 
-/*var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: 3306,
     user: process.env.MYSQL_USER,
@@ -30,3 +31,24 @@ connection.connect(function(err) {
 });
 
 module.exports = connection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

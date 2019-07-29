@@ -54,20 +54,24 @@ var orm = {
       connection.query(queryString, vals, function(err, result) {
         if (err) throw err;
         console.log(result);
+        cb(result);
       });
     },
-    updateOne: function(tableInput, objColVals, condition){
+    updateOne: function(tableInput, objColVals, condition, cb){
       console.log("I am in the update function------orm.js");
+      console.log(condition);
       var queryString = "UPDATE " + tableInput + " SET ";
       queryString += objToSql(objColVals);
       queryString += " WHERE ";
       queryString += condition;
+      console.log(queryString);
   
   
          
       connection.query(queryString, function(err, result) {
           if (err) throw err;
           console.log(result);
+          cb(result);
         }
       );
     }

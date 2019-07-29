@@ -15,12 +15,14 @@ router.get("/", function(req, res) {
       res.render("index", hbsObject);
     });
   });
-  
+
+  //ISSUES WITH PAGE RELOAD COMES FROM THIS ROUTE(POST) SINCE CONSOLE.LOGS() AREN'T DISPLAYING............
   router.post("/api/burgers", function(req, res) {
-    devouredParsed = JSON.parse(req.body.devoured);
+    var devouredParsed = JSON.parse(req.body.devoured);
     burger.insertOne(["burger_name", "devoured"], [req.body.name, devouredParsed], function(result) {
       // Send back the ID of the new quote
       console.log("New burger was successfully created");
+      console.log("Here is the result id: " + result.insertId);
       res.json({ id: result.insertId });
     });
   });
@@ -29,6 +31,7 @@ router.get("/", function(req, res) {
     var condition = "id = " + req.params.id;
   
     console.log("condition", condition);
+    console.log(req.params);
   
     burger.updateOne(
       {
